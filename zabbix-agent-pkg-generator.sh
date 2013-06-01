@@ -71,4 +71,4 @@ fi
 
 # Build the package and delete the temp folder
 dpkg -b $TEMP_FOLDER $PKG_NAME 
-#rm -rf $TEMP_FOLDER
+rm -rf $TEMP_FOLDER
