@@ -1,0 +1,23 @@
+Package: zabbix-agent
+Source: zabbix
+Version: 1:2.0.6-1
+Architecture: amd64
+Maintainer: Felix Queiruga
+Installed-Size: 720
+Depends: 
+Suggests: logrotate
+Section: net
+Priority: optional
+Description: network monitoring solution - agent
+ Zabbix is a server/client network monitoring system with many features.
+ It can be used for:
+ .
+  - high level monitoring of IT services;
+  - centralized monitoring of your servers and applications;
+  - monitoring of SNMP-enabled devices;
+  - performance monitoring (process load, network activity, disk
+    activity, memory usage, OS parameters etc.);
+  - data visualization.
+ .
+ This package provides the software needed to monitor a host using a
+ Zabbix agent.
