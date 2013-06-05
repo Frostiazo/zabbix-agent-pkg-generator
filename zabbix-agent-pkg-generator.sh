@@ -19,6 +19,10 @@ print_help() {
     
 }
 
+if [ -f $PKG_NAME ]; then
+    rm -f $PKG_NAME
+fi
+
 # Parse params
 if [ $# -eq 0 ]; then
     default_config=true

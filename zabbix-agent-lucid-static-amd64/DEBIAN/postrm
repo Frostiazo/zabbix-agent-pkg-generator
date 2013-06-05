@@ -16,6 +16,7 @@ case "$1" in
 
         rm -f /usr/local/etc/zabbix_agentd.log*
         rm -f /usr/local/etc/zabbix_agentd.pid
+
     ;;
 
     *)
