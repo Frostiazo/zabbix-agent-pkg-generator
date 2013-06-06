@@ -1,3 +1,0 @@
-/etc/logrotate.d/zabbix-agent
-/usr/local/etc/zabbix_agentd.d/userparameter_mysql.conf
-/etc/init.d/zabbix-agent
