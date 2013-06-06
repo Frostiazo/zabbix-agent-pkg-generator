@@ -36,6 +36,7 @@ if [ "$1" = "configure" ]; then
     fi
 
     chown zabbix:zabbix /var/log/zabbix -R
+    chown zabbix:zabbix /var/run/zabbix -R
 fi
 
 db_stop
