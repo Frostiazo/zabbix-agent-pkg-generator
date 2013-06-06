@@ -4,7 +4,7 @@
 #
 # TODO: check with regexp if the parameters are well formed IPs or DNS names
 
-BASE_FOLDER="zabbix-agent-lucid-static-amd64"
+BASE_FOLDER="zabbix-agent-static-amd64"
 TEMP_FOLDER=".temp"
 PKG_NAME="zabbix-agent-2.0.6.deb"
 CONF_FILE="/usr/share/zabbix-agent/zabbix_agentd.conf"
@@ -15,8 +15,9 @@ print_help() {
     echo "Usage: $0 [OPCIONES]"
     echo "      -s  | --server          SERVER"
     echo "      -sa | --server-active   SERVER_IP[:PORT]"
+    echo "      -t  | --timeout         SECONDS (1-30)"
+    echo "      -ra | --refresh-active  SECONDS (60-3600)" 
     echo "      -h  | --help" 
-    
 }
 
 if [ -f $PKG_NAME ]; then
@@ -48,6 +49,24 @@ while [ $# -gt 0 ]; do
                 exit 1
             fi
         ;;
+        -t|--timeout)
+            if [ $2 != "" -a $2 -ge 1 -a $2 -le 30 ]; then
+                timeout=$2
+                shift 2
+            else
+                echo "Value for Timeout incorrect or missing"
+                exit 1
+            fi
+        ;;
+        -ra|--refresh-active)
+            if [ $2 != "" -a $2 -ge 60 -a $2 -le 3600 ]; then
+                refresh_active=$2
+                shift 2
+            else 
+                echo "Value for RefreshActiveChecks incorrect or missing"
+                exit 1
+            fi
+        ;;
         -h|--help)
             print_help
             exit 0
@@ -71,6 +90,12 @@ else
     if [ -n $server_active ]; then
         sed "s/^ServerActive=.*/ServerActive=$server_active/g" -i $TEMP_FOLDER$CONF_FILE
     fi   
+    if [ -n $timeout ]; then
+        sed "s/^Timeout=.*/Timeout=$timeout/g" -i $TEMP_FOLDER$CONF_FILE
+    fi
+    if [ -n $refresh_active ]; then
+        sed "s/^RefreshActiveChecks=.*/RefreshActiveChecks=$refresh_active/g" -i $TEMP_FOLDER$CONF_FILE
+    fi 
 fi 
 
 # Build the package and delete the temp folder
