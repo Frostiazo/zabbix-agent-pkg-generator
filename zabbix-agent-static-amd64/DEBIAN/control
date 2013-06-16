@@ -3,8 +3,8 @@ Source: zabbix
 Version: 1:2.0.6-1
 Architecture: amd64
 Maintainer: Felix Queiruga
-Installed-Size: 720
-Depends: 
+Installed-Size: 3524
+Depends: debconf, ucf
 Suggests: logrotate
 Section: net
 Priority: optional
